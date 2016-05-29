@@ -7,7 +7,7 @@
  * @since WP Custom Theme 1.0
  */
 
-get_header(); ?>
+get_header("archivepages"); ?>
 	<?php 
    		$src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
    		$url = $src[0];

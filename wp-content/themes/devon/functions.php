@@ -179,6 +179,15 @@ function wpcustomtheme_widgets_init() {
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
+		'name'          => __( 'Content Bottom Area', 'wpcustomtheme' ),
+		'id'            => 'contnetbottom',
+		'description'   => __( 'Appears in the bottom of main content', 'wpcustomtheme' ),
+		'before_widget' => '<aside id="%1$s" class="widget-content-bottom %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
 		'name'          => __( 'Footer Top', 'wpcustomtheme' ),
 		'id'            => 'footer-top',
 		'description'   => __( 'Appears in the footer top section of the site.', 'wpcustomtheme' ),
@@ -188,23 +197,14 @@ function wpcustomtheme_widgets_init() {
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Footer Tweetter widget', 'wpcustomtheme' ),
-		'id'            => 'footer-tweeter',
-		'description'   => __( 'Appears in the footer 2nd column', 'wpcustomtheme' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
+		'name'          => __( 'Footer Main', 'wpcustomtheme' ),
+		'id'            => 'footer-main',
+		'description'   => __( 'Appears in the footer bottom', 'wpcustomtheme' ),
+		'before_widget' => '<aside id="%1$s" class="footer-column %2$s"><div class="footer-content">',
+		'after_widget'  => '</div></aside>',
 		'before_title'  => '<h4 class="footer-column-title twitter">',
 		'after_title'   => '</h4>',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'Footer Instagram widget', 'wpcustomtheme' ),
-		'id'            => 'footer-instagram',
-		'description'   => __( 'Appears in the footer 4rth column', 'wpcustomtheme' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="footer-column-title">',
-		'after_title'   => '</h4>',
-	) );
+	) );	
 }
 add_action( 'widgets_init', 'wpcustomtheme_widgets_init' );
 
@@ -510,3 +510,20 @@ $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'wpcu
 ) ) );
 }
 add_action( 'customize_register', 'wpcustomtheme_theme_customizer' );
+
+// Menu Short code
+function menu_function($atts, $content = null) {
+   extract(
+      shortcode_atts(
+         array( 'name' => null, ),
+         $atts
+      )
+   );
+   return wp_nav_menu(
+      array(
+          'menu' => $name,
+          'echo' => false
+          )
+   );
+}
+add_shortcode('menu', 'menu_function');

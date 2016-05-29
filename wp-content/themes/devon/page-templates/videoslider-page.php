@@ -42,7 +42,7 @@ get_header(); ?>
 					<div class="entry-content">
 						<h1 class="entry-title"><?php the_title(); ?></h1>
 
-
+							<?php the_content(); ?>
 							<div class="video-slider-outer">
 								<div class="vid-container">
 									<iframe id="vid_frame" src="http://www.youtube.com/embed/<?php echo CFS()->get( 'default_youtube_video' );	?>?rel=0&showinfo=0&autohide=1" width="100%" height="460" frameborder="0"></iframe>
@@ -72,10 +72,9 @@ get_header(); ?>
 								</ul>
 
 							</div>
+
+							<div class="page-content-bottom"><?php echo CFS()->get( 'other_details' ); ?></div>
 							
-							<?php the_content(); ?>
-
-
 							<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'wpcustomtheme' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
 					</div><!-- .entry-content -->
 

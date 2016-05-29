@@ -27,25 +27,34 @@
 	<?php 
        $menucolor = CFS()->get( 'main_menu_color' );
 	?>
-	<?php if ( $menucolor !="" ) : ?>
 	<style type="text/css">
-	.main-menu > li > a,
-	.main-menu > li:hover > a,
-	.main-menu > li > a:focus,
-	.header .social_links a  {
-		color:<?php echo $menucolor; ?>;
+	@media screen and (min-width: 568px){
+		.main-menu > li > a,
+		.main-menu > li:hover > a,
+		.main-menu > li > a:focus,
+		.header .social_links a,
+		.side_menu_button_wrapper a,
+		.side_menu_button_link,
+		.toggle-menu-bar  {
+			color:<?php echo $menucolor; ?>;
+		}
+		.toggle-menu-bar {
+			background-color: <?php echo $menucolor; ?>;
+		}
 	}
 	</style>
-	<?php endif; ?>
+	<?php $homeurl = esc_url( home_url( '' ) ); ?>
 </head>
 
 <body <?php body_class(); ?>>	
     <div class="menusection">
 		<div id="navbar" class="navbar">
-			<div class="watch-video">
-				<h2 class="section-title">Watch Video</h2>
+			<div class="watch-video">				
 				<div class="video-container">
-					<iframe width="240" height="135" src="https://www.youtube.com/embed/NRO2EvLR7cY" frameborder="0" allowfullscreen></iframe>
+					<?php 
+	                   $navvideo = ot_get_option( 'navigation_video' );                 
+	                   echo $navvideo;
+					?>
 				</div>
 			</div>
             <nav id="site-navigation" class="navigation main-navigation clearfix" role="navigation">
@@ -109,7 +118,7 @@
 						$values = CFS()->get( 'choose_logo' );
 						foreach ( $values as $value => $value ) {
 						    $selectedlogo = $value;
-						  	echo "<a class='site-logo $selectedlogo-logo' href='/' title='' rel='home'><img class='logoimage-black' src='$logoblack' alt=''><img src='$logowhite' class='logoimage-white' alt=''></a>";
+						  	echo "<a class='site-logo $selectedlogo-logo' href='$homeurl' title='' rel='home'><img class='logoimage-black' src='$logoblack' alt=''><img src='$logowhite' class='logoimage-white' alt=''></a>";
 						}
 					?>
 				</div>

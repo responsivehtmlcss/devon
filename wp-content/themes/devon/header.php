@@ -28,11 +28,19 @@
        $menucolor = CFS()->get( 'main_menu_color' );
 	?>
 	<style type="text/css">
-	.main-menu > li > a,
-	.main-menu > li:hover > a,
-	.main-menu > li > a:focus,
-	.header .social_links a  {
-		color:<?php echo $menucolor; ?>;
+	@media screen and (min-width: 568px){
+		.main-menu > li > a,
+		.main-menu > li:hover > a,
+		.main-menu > li > a:focus,
+		.header .social_links a,
+		.side_menu_button_wrapper a,
+		.side_menu_button_link,
+		.toggle-menu-bar  {
+			color:<?php echo $menucolor; ?>;
+		}
+		.toggle-menu-bar {
+			background-color: <?php echo $menucolor; ?>;
+		}
 	}
 	</style>
 	<?php $homeurl = esc_url( home_url( '' ) ); ?>
@@ -56,10 +64,12 @@
 		<!-- header menu -->		
 		<div class="innerpage-mobile-menu mobile-meenu">						
 			<div class="header-top-right">
-				<div class="watch-video">
-					<h2 class="section-title">Watch Video</h2>
+				<div class="watch-video">					
 					<div class="video-container">
-						<iframe width="240" height="135" src="https://www.youtube.com/embed/NRO2EvLR7cY" frameborder="0" allowfullscreen></iframe>
+						<?php 
+		                   $navvideo = ot_get_option( 'navigation_video' );                 
+		                   echo $navvideo;
+						?>						
 					</div>
 				</div>
 				<?php 
@@ -122,13 +132,7 @@
 						}
 					?>
 					<div class="innerpage-mobile-menu">						
-						<div class="header-top-right">
-							<div class="watch-video">
-								<h2 class="section-title">Watch Video</h2>
-								<div class="video-container">
-									<iframe width="240" height="135" src="https://www.youtube.com/embed/NRO2EvLR7cY" frameborder="0" allowfullscreen></iframe>
-								</div>
-							</div>
+						<div class="header-top-right">							
 							<?php 
 		                       $facebookurl = ot_get_option( 'facebook' );	                   
 		                       $twitterurl = ot_get_option( 'twitter' );

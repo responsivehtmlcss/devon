@@ -17,14 +17,18 @@
  * @since WP Custom Theme 1.0
  */
 
-get_header(); ?>
-
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+get_header("archivepages"); ?>
+	<div class="page-banner" style="background-image:url(<?php echo get_template_directory_uri(); ?>/images/common_banner.jpg);">
+   		<img src="<?php echo get_template_directory_uri(); ?>/images/common_banner.jpg" alt="<?php the_title(); ?>"> 
+   		<div class="banner-curve"></div>  	
+   </div>
+	<div id="primary" class="content-area content-full">
+		<div class="site-width">
+			<div id="content" class="site-content" role="main">
 
 		<?php if ( have_posts() ) : ?>
-			<header class="archive-header">
-				<h1 class="archive-title"><?php
+			<header class="archive-header">			
+				<h1 class="entry-title"><?php
 					if ( is_day() ) :
 						printf( __( 'Daily Archives: %s', 'wpcustomtheme' ), get_the_date() );
 					elseif ( is_month() ) :
@@ -49,7 +53,6 @@ get_header(); ?>
 		<?php endif; ?>
 
 		</div><!-- #content -->
+		</div>
 	</div><!-- #primary -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

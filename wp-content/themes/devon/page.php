@@ -38,6 +38,10 @@ get_header(); ?>
 						<div class="entry-content">							
 							<h1 class="entry-title"><?php the_title(); ?></h1>
 							<?php the_content(); ?>
+
+							<?php dynamic_sidebar( 'contnetbottom' ); ?>	
+							
+
 							<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'wpcustomtheme' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>							
 						</div><!-- .entry-content -->
 
